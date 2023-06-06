@@ -1,6 +1,8 @@
 import React,{useRef} from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const SignUpForm = () => {
+    const navigate = useNavigate()
     const emailinputref = useRef()
     const passwordinputref = useRef()
 
@@ -33,7 +35,7 @@ const SignUpForm = () => {
         }
       })
       .then((data)=>{
-        console.log(data,"User has sucessfully signed up")
+        navigate("/login")
     
 
 
