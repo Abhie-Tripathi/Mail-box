@@ -26,7 +26,10 @@ const ComposeMail = () => {
   const handleSendEmail = () => {
     const contentState = editorState.getCurrentContent();
     const rawContentState = convertToRaw(contentState);
+    
     const modifiedto = to.replace(/[^a-zA-Z0-9 ]/g, '');
+    const email = localStorage.getItem("email")
+
     console.log("To:", to);
     console.log("Subject:", subject);
     console.log("Content:", rawContentState);
@@ -35,6 +38,7 @@ const ComposeMail = () => {
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({
+        by: email,
         subject:subject,
         content:rawContentState
       })

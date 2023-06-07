@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../assets/email.png"
+import { Link } from "react-router-dom";
 
 const Sidebar = (props) => {
   return (
@@ -18,31 +19,31 @@ const Sidebar = (props) => {
               id="menu"
             >
               <li class="nav-item ">
-                <a href="#" class="nav-link align-middle text-white px-0">
+                <Link to="/compose" class="nav-link align-middle text-white px-0">
                   <i class="fs-4 bi-envelope"></i>{" "}
                   <span class="ms-1 d-none d-sm-inline">Compose</span>
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a href="#" class="nav-link px-0 text-white align-middle">
+                <Link to="/inbox" class="nav-link px-0 text-white align-middle">
                   <i class="fs-4 bi-inbox"></i>{" "}
                   <span class="ms-1 d-none d-sm-inline">Inbox</span>
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a href="#" class="nav-link px-0 text-white align-middle">
+                <Link to="" class="nav-link px-0 text-white align-middle">
                   <i class="fs-4 bi-envelope-fill"></i>{" "}
                   <span class="ms-1 d-none d-sm-inline">Sent Box</span>
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a href="#" class="nav-link px-0  text-white align-middle">
+                <Link to="" class="nav-link px-0  text-white align-middle">
                   <i class="fs-4 bi-trash"></i>{" "}
                   <span class="ms-1 d-none d-sm-inline">Trash</span>
-                </a>
+                </Link>
               </li>
 
             </ul>

@@ -38,8 +38,8 @@ const LoginForm = () => {
             }
         }).then((data)=>{
           localStorage.setItem("Token",data.idToken)
-          localStorage.setItem("email",enteredemail.replace(/[^a-zA-Z0-9 ]/g, ''))
-          navigate("/home")
+          localStorage.setItem("email",enteredemail)
+          navigate("/inbox")
 
           
         })

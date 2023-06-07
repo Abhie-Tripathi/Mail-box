@@ -1,10 +1,9 @@
 import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignUpForm";
-import Home from "./components/Home"
-import Mail from "./components/Mail";
 import { BrowserRouter as Router,Route,Routes } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import ComposeMail from "./components/ComposeMail";
+import Inbox from "./components/Inbox";
 
 function App() {
   return (
@@ -12,7 +11,8 @@ function App() {
       <Routes>
         <Route path="/" element={<SignUpForm/>}/>
         <Route path="/login" element={<LoginForm/>}/>
-        <Route path="/home" element={<ComposeMail/>}/>
+        <Route path="/compose" element={<ComposeMail/>}/>
+        <Route path="/inbox" element={<Inbox/>}/>
       </Routes>
     </Router>
   );

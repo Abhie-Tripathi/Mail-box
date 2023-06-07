@@ -1,24 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Sidebar from "./Sidebar";
 
 const Inbox = () => {
   const [selectedEmails, setSelectedEmails] = useState([]);
-  const [emails, setEmails] = useState([
-    {
-      id: 1,
-      sender: "john@example.com",
-      subject: "Hello",
-      date: "2023-06-01",
-      content: "This is the email content.",
-    },
-    {
-      id: 2,
-      sender: "jane@example.com",
-      subject: "Meeting Reminder",
-      date: "2023-06-02",
-      content: "Don't forget about the meeting tomorrow.",
-    },
-    // Add more email objects here...
-  ]);
+  const [emails, setEmails] = useState();
+
+  const mail = localStorage.getItem("email")
+  const modifiedmail = mail.replace(/[^a-zA-Z0-9 ]/g, '')
+
+  useEffect(()=>{
+    fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedmail}.json`)
+    .then((Response)=>Response.json()).then((data)=>{
+     const array = Object.keys(data).map((id)=>({...(data[id]),id:id}))
+     setEmails(array)
+    })
+  },[])
 
   const handleSelectEmail = (emailId) => {
     if (selectedEmails.includes(emailId)) {
@@ -35,6 +31,7 @@ const Inbox = () => {
   };
 
   return (
+    <Sidebar>
     <div className="inbox-container">
       <h1>Inbox</h1>
       <table className="table">
@@ -48,7 +45,7 @@ const Inbox = () => {
           </tr>
         </thead>
         <tbody>
-          {emails.map((email) => (
+          {emails && emails.map((email) => (
             <tr key={email.id}>
               <td>
                 <input
@@ -57,7 +54,7 @@ const Inbox = () => {
                   onChange={() => handleSelectEmail(email.id)}
                 />
               </td>
-              <td>{email.sender}</td>
+              <td>{email.by}</td>
               <td>{email.subject}</td>
               <td>{email.date}</td>
               <td>
@@ -81,6 +78,7 @@ const Inbox = () => {
         </div>
       )}
     </div>
+    </Sidebar>
   );
 };
 
