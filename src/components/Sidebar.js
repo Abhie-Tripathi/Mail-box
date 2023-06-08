@@ -33,7 +33,7 @@ const Sidebar = (props) => {
               </li>
 
               <li>
-                <Link to="" className="nav-link px-0 text-white align-middle">
+                <Link to="/sentbox" className="nav-link px-0 text-white align-middle">
                   <i className="fs-4 bi-envelope-fill"></i>{" "}
                   <span className="ms-1 d-none d-sm-inline">Sent Box</span>
                 </Link>

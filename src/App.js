@@ -4,6 +4,7 @@ import { BrowserRouter as Router,Route,Routes } from "react-router-dom";
 import ComposeMail from "./components/ComposeMail";
 import Inbox from "./components/Inbox";
 import EmailView from "./components/EmailView";
+import SentBox from "./components/SentBox";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/compose" element={<ComposeMail/>}/>
         <Route path="/inbox" element={<Inbox/>}/>
         <Route path="/inbox/:id" element={<EmailView/>}/>
+        <Route path="/sentbox" element={<SentBox/>}/>
       </Routes>
     </Router>
   );

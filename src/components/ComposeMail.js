@@ -33,13 +33,14 @@ const ComposeMail = () => {
     const jsonString = CircularJSON.stringify(rawContentState);
     const modifiedto = to.replace(/[^a-zA-Z0-9 ]/g, '');
     const email = localStorage.getItem("email")
+    const modifiedby = email.replace(/[^a-zA-Z0-9 ]/g, '');
 
     console.log("To:", to);
     console.log("Subject:", subject);
     console.log("Content:", jsonString);
     
     // Implement logic to send the email
-    fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedto}.json`,{
+    fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedto}/inbox.json`,{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({
@@ -47,7 +48,15 @@ const ComposeMail = () => {
         subject:subject,
         content:jsonString
       })
-    }).then(()=>{setTo("")
+    }).then(fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedby}/sentbox.json`,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        by: email,
+        subject:subject,
+        content:jsonString
+      })
+    })).then(()=>{setTo("")
     setSubject("")
     setEditorState(EditorState.createEmpty())})
 

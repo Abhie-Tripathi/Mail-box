@@ -6,14 +6,14 @@ import "./Inbox.css";
 
 
 
-const Inbox = () => {
+const SentBox = () => {
   const [emails, setEmails] = useState();
 
   const mail = localStorage.getItem("email");
   const modifiedmail = mail.replace(/[^a-zA-Z0-9 ]/g, "");
 
   useEffect(() => {
-    fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedmail}/inbox.json`)
+    fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedmail}/sentbox.json`)
       .then((Response) => Response.json())
       .then((data) => {
         if(data){
@@ -23,7 +23,7 @@ const Inbox = () => {
   }, []);
 
   const handleDeleteSelected = (id) => {
-    fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedmail}/inbox/${id}.json`,{
+    fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedmail}/${id}.json`,{
       method:"DELETE"
     }).then(setEmails((prevemails)=>prevemails.filter((email)=>email.id !== id)))
   };
@@ -31,15 +31,15 @@ const Inbox = () => {
 
   return (
     <Sidebar>
-      <div className="inbox-container">
-        <h1>Inbox</h1>
+      <div className="SentBox-container">
+        <h1>Sent Box</h1>
         <div className="card-container">
           {emails &&
             emails.map((email) => (
               <Card key={email.id} className="mb-3">
                 <Card.Body className="d-flex justify-content-between">
                   <div>
-                    <Link to={`/inbox/${email.id}`} className="card-link">
+                    <Link to={`/SentBox/${email.id}`} className="card-link">
                       <Card.Title>{email.subject}</Card.Title>
                       <Card.Subtitle className="mb-2 text-muted">
                         {email.by}
@@ -62,4 +62,4 @@ const Inbox = () => {
   );
 };
 
-export default Inbox;
+export default SentBox;
