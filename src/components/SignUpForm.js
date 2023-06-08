@@ -1,5 +1,5 @@
 import React,{useRef} from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const SignUpForm = () => {
     const navigate = useNavigate()
@@ -89,6 +89,10 @@ const SignUpForm = () => {
                   <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                     <button onClick={onsignuphandler} type="button" className="btn btn-primary btn-lg">Register</button>
                   </div>
+                  <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <Link to="/login">Have an account already? Sign in</Link>
+                  </div>
+
 
                 </form>
 

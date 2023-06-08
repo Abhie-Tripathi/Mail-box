@@ -1,10 +1,12 @@
-import React,{useRef} from 'react'
+import React,{useRef,useContext} from 'react'
 import "./LoginForm.css"
 import { useNavigate } from 'react-router-dom'
-
+import { Context } from './ContextProvider'
+import {Link} from "react-router-dom"
 
 
 const LoginForm = () => {
+    const ctx = useContext(Context)
     const navigate = useNavigate()
     const emailinputref = useRef()
     const passwordinputref = useRef()
@@ -37,6 +39,7 @@ const LoginForm = () => {
                 })
             }
         }).then((data)=>{
+          ctx.setToken(data.idToken)
           localStorage.setItem("Token",data.idToken)
           localStorage.setItem("email",enteredemail)
           navigate("/inbox")
@@ -77,13 +80,13 @@ const LoginForm = () => {
                 Remember me
               </label>
             </div>
-            <a to="/forgotpassword" className="text-body">Forgot password?</a>
+            <Link to="/forgotpassword" className="text-body">Forgot password?</Link>
           </div>
 
           <div className="text-center text-lg-start mt-4 pt-2">
             <button onClick={onloginhandler} type="button" className="btn btn-primary btn-lg"
               style={{paddingLeft: "2.5rem", paddingRight: "2.5rem"}}>Login</button>
-            <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a to="/register" className="link-danger"> Register</a>
+            <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <Link to="/" className="link-danger"> Register</Link>
                 </p>
           </div>
 

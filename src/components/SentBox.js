@@ -22,7 +22,7 @@ const SentBox = () => {
         const array = Object.keys(data).map((id) => ({ ...data[id], id: id }));
         setEmails(array)}
       });
-  }, []);
+  }, [modifiedmail]);
 
   const handleDeleteSelected = (id) => {
     fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedmail}/${id}.json`,{

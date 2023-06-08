@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import Sidebar from "./Sidebar";
 import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import "./Inbox.css";
+import { Context } from "./ContextProvider";
 
 
 const Inbox = () => {
+  const ctx = useContext(Context)
   const [emails,setEmails] = useState()
   const mail = localStorage.getItem("email");
   const modifiedmail = mail.replace(/[^a-zA-Z0-9 ]/g, "");
@@ -17,7 +19,9 @@ const Inbox = () => {
         .then((data) => {
           if(data){
           const array = Object.keys(data).map((id) => ({ ...data[id], id: id }));
-          setEmails(array)}
+          setEmails(array)
+          ctx.setinboxNo(array.length)
+        }
         });
     }
 
@@ -28,7 +32,7 @@ const Inbox = () => {
     return () => clearInterval(interval);
 
 
-}, []);
+}, [ctx,modifiedmail]);
 
   const handleDeleteSelected = (id) => {
     fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedmail}/inbox/${id}.json`,{

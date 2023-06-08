@@ -1,9 +1,19 @@
-import React from "react";
+import React,{useContext} from "react";
 import logo from "../assets/email.png"
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import { Context } from "./ContextProvider";
 
 const Sidebar = (props) => {
+  const navigate = useNavigate()
+  const ctx = useContext(Context)
   const userName = localStorage.getItem("email")
+
+  const signOutHandler = () =>{
+    ctx.setToken(null)
+    localStorage.removeItem("email")
+    navigate("/login")
+  }
+
   return (
     <div className="container-fluid">
       <div className="row flex-nowrap">
@@ -13,7 +23,7 @@ const Sidebar = (props) => {
               href="/"
               className="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
             >
-              <img src={logo} style={{width: "64px",height:"64px"}}/>
+              <img src={logo} alt="mail-logo" style={{width: "64px",height:"64px"}}/>
             </a>
             <ul
               className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
@@ -29,7 +39,7 @@ const Sidebar = (props) => {
               <li>
                 <Link to="/inbox" className="nav-link px-0 text-white align-middle">
                   <i className="fs-4 bi-inbox"></i>{" "}
-                  <span className="ms-1 d-none d-sm-inline">Inbox</span>
+                  <span className="ms-1 d-none d-sm-inline">{`Inbox - ${ctx.inboxNo}`}</span>
                 </Link>
               </li>
 
@@ -51,7 +61,7 @@ const Sidebar = (props) => {
             <hr />
             <div className="dropdown pb-4">
               <a
-                href="#"
+                href="/nothing"
                 className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                 id="dropdownUser1"
                 data-bs-toggle="dropdown"
@@ -71,12 +81,12 @@ const Sidebar = (props) => {
                 aria-labelledby="dropdownUser1"
               >
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="/setting">
                     Settings
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="/profile">
                     Profile
                   </a>
                 </li>
@@ -84,9 +94,9 @@ const Sidebar = (props) => {
                   <hr className="dropdown-divider" />
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <button className="dropdown-item" onClick={signOutHandler}>
                     Sign out
-                  </a>
+                  </button>
                 </li>
               </ul>
             </div>

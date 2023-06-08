@@ -3,7 +3,6 @@ import "./EmailView.css";
 import Sidebar from "./Sidebar";
 import { useParams } from "react-router-dom";
 import draftToHtml from "draftjs-to-html";
-import { convertFromRaw, EditorState, convertToRaw } from "draft-js";
 import CircularJSON from 'circular-json';
 
 const EmailView = () => {
@@ -20,7 +19,7 @@ const EmailView = () => {
         const selectedEmail = array.filter((email) => email.id === id);
         setEmail(selectedEmail[0]);
       });
-  }, []);
+  }, [id,modifiedMail]);
 
   const convertToHtml = () => {
     const retrievedContent = CircularJSON.parse(email.content);
