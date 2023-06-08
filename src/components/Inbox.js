@@ -22,7 +22,11 @@ const Inbox = () => {
       });
   }, []);
 
-  const handleDeleteSelected = () => {};
+  const handleDeleteSelected = (id) => {
+    fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedmail}/${id}.json`,{
+      method:"DELETE"
+    }).then(setEmails((prevemails)=>prevemails.filter((email)=>email.id !== id)))
+  };
 
 
   return (
