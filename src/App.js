@@ -5,6 +5,7 @@ import ComposeMail from "./components/ComposeMail";
 import Inbox from "./components/Inbox";
 import EmailView from "./components/EmailView";
 import SentBox from "./components/SentBox";
+import SentEmailView from "./components/SentEmailView";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/inbox" element={<Inbox/>}/>
         <Route path="/inbox/:id" element={<EmailView/>}/>
         <Route path="/sentbox" element={<SentBox/>}/>
+        <Route path="/sentbox/:id" element={<SentEmailView/>}/>
       </Routes>
     </Router>
   );

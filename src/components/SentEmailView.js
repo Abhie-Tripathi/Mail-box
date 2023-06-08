@@ -6,14 +6,14 @@ import draftToHtml from "draftjs-to-html";
 import { convertFromRaw, EditorState, convertToRaw } from "draft-js";
 import CircularJSON from 'circular-json';
 
-const EmailView = () => {
+const SentEmailView = () => {
   const { id } = useParams();
   const [email, setEmail] = useState();
   const mail = localStorage.getItem("email");
   const modifiedMail = mail.replace(/[^a-zA-Z0-9 ]/g, "");
 
   useEffect(() => {
-    fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedMail}/inbox.json`)
+    fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedMail}/sentbox.json`)
       .then((response) => response.json())
       .then((data) => {
         const array = Object.keys(data).map((id) => ({ ...data[id], id: id }));
@@ -47,4 +47,4 @@ const EmailView = () => {
   );
 };
 
-export default EmailView;
+export default SentEmailView;

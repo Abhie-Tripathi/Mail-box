@@ -12,6 +12,8 @@ const SentBox = () => {
   const mail = localStorage.getItem("email");
   const modifiedmail = mail.replace(/[^a-zA-Z0-9 ]/g, "");
 
+
+
   useEffect(() => {
     fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedmail}/sentbox.json`)
       .then((Response) => Response.json())

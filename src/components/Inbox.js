@@ -5,10 +5,8 @@ import { Card, Button } from "react-bootstrap";
 import "./Inbox.css";
 
 
-
 const Inbox = () => {
-  const [emails, setEmails] = useState();
-
+  const [emails,setEmails] = useState()
   const mail = localStorage.getItem("email");
   const modifiedmail = mail.replace(/[^a-zA-Z0-9 ]/g, "");
 

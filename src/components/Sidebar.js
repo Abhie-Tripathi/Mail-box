@@ -3,6 +3,7 @@ import logo from "../assets/email.png"
 import { Link } from "react-router-dom";
 
 const Sidebar = (props) => {
+  const userName = localStorage.getItem("email")
   return (
     <div className="container-fluid">
       <div className="row flex-nowrap">
@@ -63,7 +64,7 @@ const Sidebar = (props) => {
                   height="30"
                   className="rounded-circle"
                 />
-                <span className="d-none d-sm-inline mx-1">UserName</span>
+                <span className="d-none d-sm-inline mx-1" style={{fontSize:"14px"}}>{userName}</span>
               </a>
               <ul
                 className="dropdown-menu dropdown-menu-dark text-small shadow"
