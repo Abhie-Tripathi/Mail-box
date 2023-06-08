@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import { EditorState, convertToRaw } from "draft-js";
+import { EditorState, convertToRaw} from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./ComposeMail.css"
 import Sidebar from "./Sidebar";
+import CircularJSON from 'circular-json';
+
+
+
 
 const ComposeMail = () => {
   const [to, setTo] = useState("");
@@ -25,14 +29,15 @@ const ComposeMail = () => {
 
   const handleSendEmail = () => {
     const contentState = editorState.getCurrentContent();
-    const rawContentState = convertToRaw(contentState);
-    
+    const rawContentState = convertToRaw(contentState, true);
+    const jsonString = CircularJSON.stringify(rawContentState);
     const modifiedto = to.replace(/[^a-zA-Z0-9 ]/g, '');
     const email = localStorage.getItem("email")
 
     console.log("To:", to);
     console.log("Subject:", subject);
-    console.log("Content:", rawContentState);
+    console.log("Content:", jsonString);
+    
     // Implement logic to send the email
     fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedto}.json`,{
       method:"POST",
@@ -40,7 +45,7 @@ const ComposeMail = () => {
       body:JSON.stringify({
         by: email,
         subject:subject,
-        content:rawContentState
+        content:jsonString
       })
     }).then(()=>{setTo("")
     setSubject("")

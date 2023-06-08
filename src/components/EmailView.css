@@ -1,0 +1,35 @@
+.email-view {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 95vh;
+  }
+  
+  .email-header {
+    margin-bottom: 20px;
+  }
+  
+  .email-subject {
+    font-size: 19px;
+    margin: 0;
+    margin-bottom: 23px;
+  }
+  
+  .email-details {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .email-from {
+    font-weight: bold;
+  }
+  
+  .email-date {
+    margin-left: 10px;
+  }
+  
+  .email-content {
+    line-height: 1.5;
+  }
+  
