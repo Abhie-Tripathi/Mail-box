@@ -13,14 +13,24 @@ const Inbox = () => {
   const modifiedmail = mail.replace(/[^a-zA-Z0-9 ]/g, "");
 
   useEffect(() => {
-    fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedmail}/inbox.json`)
-      .then((Response) => Response.json())
-      .then((data) => {
-        if(data){
-        const array = Object.keys(data).map((id) => ({ ...data[id], id: id }));
-        setEmails(array)}
-      });
-  }, []);
+    const fetchdata = () => {
+      fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedmail}/inbox.json`)
+        .then((Response) => Response.json())
+        .then((data) => {
+          if(data){
+          const array = Object.keys(data).map((id) => ({ ...data[id], id: id }));
+          setEmails(array)}
+        });
+    }
+
+    fetchdata()
+
+    const interval = setInterval(fetchdata, 5000);
+
+    return () => clearInterval(interval);
+
+
+}, []);
 
   const handleDeleteSelected = (id) => {
     fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedmail}/inbox/${id}.json`,{
