@@ -12,7 +12,7 @@ const SentEmailView = () => {
   const modifiedMail = mail.replace(/[^a-zA-Z0-9 ]/g, "");
 
   useEffect(() => {
-    fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedMail}/sentbox.json`)
+    fetch(`https://mail-box-97e37-default-rtdb.firebaseio.com/Mail/${modifiedMail}/sentbox.json`)
       .then((response) => response.json())
       .then((data) => {
         const array = Object.keys(data).map((id) => ({ ...data[id], id: id }));

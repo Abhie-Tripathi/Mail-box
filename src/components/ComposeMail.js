@@ -39,8 +39,8 @@ const ComposeMail = () => {
     console.log("Subject:", subject);
     console.log("Content:", jsonString);
     
-    // Implement logic to send the email
-    fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedto}/inbox.json`,{
+
+    fetch(`https://mail-box-97e37-default-rtdb.firebaseio.com/Mail/${modifiedto}/inbox.json`,{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({
@@ -48,7 +48,7 @@ const ComposeMail = () => {
         subject:subject,
         content:jsonString
       })
-    }).then(fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedby}/sentbox.json`,{
+    }).then(fetch(`https://mail-box-97e37-default-rtdb.firebaseio.com/Mail/${modifiedby}/sentbox.json`,{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({
@@ -60,8 +60,6 @@ const ComposeMail = () => {
     setSubject("")
     setEditorState(EditorState.createEmpty())})
 
-
-    // Reset form fields
     
   };
 

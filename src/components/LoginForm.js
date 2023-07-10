@@ -18,7 +18,7 @@ const LoginForm = () => {
         
 
         event.preventDefault()
-        fetch("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB7344iRGQ2vtTko_2awbK36aPE_nCUw2c",{
+        fetch("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB3343nPlzAD3XBgdaCSkg3nwPIp-CjEdE",{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({

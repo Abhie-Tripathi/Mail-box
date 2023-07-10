@@ -13,7 +13,7 @@ const ForgotPass = () => {
     const enteredEmail = emailRef.current.value;
     setisloading(true)
 
-    fetch("https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyB7344iRGQ2vtTko_2awbK36aPE_nCUw2c",{
+    fetch("https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyB3343nPlzAD3XBgdaCSkg3nwPIp-CjEdE",{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({

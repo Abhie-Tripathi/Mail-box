@@ -15,7 +15,7 @@ const SentBox = () => {
 
 
   useEffect(() => {
-    fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedmail}/sentbox.json`)
+    fetch(`https://mail-box-97e37-default-rtdb.firebaseio.com/Mail/${modifiedmail}/sentbox.json`)
       .then((Response) => Response.json())
       .then((data) => {
         if(data){
@@ -25,7 +25,7 @@ const SentBox = () => {
   }, [modifiedmail]);
 
   const handleDeleteSelected = (id) => {
-    fetch(`https://expense-tri-default-rtdb.firebaseio.com/Mail/${modifiedmail}/${id}.json`,{
+    fetch(`https://mail-box-97e37-default-rtdb.firebaseio.com/Mail/${modifiedmail}/${id}.json`,{
       method:"DELETE"
     }).then(setEmails((prevemails)=>prevemails.filter((email)=>email.id !== id)))
   };
